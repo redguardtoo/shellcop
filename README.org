@@ -1,0 +1,33 @@
+* shellcop
+[[https://travis-ci.org/redguardtoo/shellcop][https://travis-ci.org/redguardtoo/shellcop.svg?branch=master]]
+[[http://melpa.org/#/shellcop][file:http://melpa.org/packages/shellcop-badge.svg]]
+[[http://stable.melpa.org/#/shellcop][file:http://stable.melpa.org/packages/shellcop-badge.svg]]
+
+Analyze errors reported in Emacs builtin shell.
+
+* Install
+shellcop is already uploaded to [[http://melpa.org]]. The best way to install is Emacs package manager.
+* Usage
+Insert below code into =~/.emacs=,
+#+begin_src elisp
+(add-hook 'shell-mode-hook 'shellcop-start)
+#+end_src
+
+Run any command line program in shell. Move the focus inside the error report of command line program.
+
+Press =Enter= key. The file path and line number information is extracted and you can open corresponding file.
+
+[[file:demo.png]]
+
+Run =shellcop-erase-buffer= to erase following buffers with below names,
+- =*Messages= (default)
+- =*shell*= (if parameter 1 is passed)
+- =*Javascript REPL*= (if parameter 2 is passed)
+- =*eshell*= (if parameter 3 is passed)
+
+Run =shellcop-reset-with-new-command= to,
+- kill current running process
+- erase the content in shell buffer
+- If =shellcop-sub-window-has-error-function= return nil in all sub-windows, run =shellcop-insert-shell-command-function=
+* Contact me
+Report bug at [[https://github.com/redguardtoo/shellcop]].
