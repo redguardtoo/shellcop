@@ -13,7 +13,7 @@ Insert below code into =~/.emacs=,
 (add-hook 'shell-mode-hook 'shellcop-start)
 #+end_src
 
-Run any command line program in shell. Move the focus inside the error report of command line program.
+Run any command line program in shell. Move the focus inside the report of the program.
 
 Press =Enter= key. The file path and line number information is extracted and you can open corresponding file.
 

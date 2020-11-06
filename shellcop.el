@@ -26,10 +26,10 @@
 ;;; Commentary:
 
 ;;  Open the file from command line error report,
-;;   - Insert "(with-eval-after-load 'shell-mode 'shellcop-start)" into ~/.emacs
+;;   - Insert "(add-hook 'shell-mode-hook 'shellcop-start)" into ~/.emacs
 ;;   - Start shell by "M-x shell"
 ;;   - Run any command line program in shell
-;;   - Press ENTER in command line program error output which contains file and line number
+;;   - Press ENTER in the program's output which contains file and line number
 ;;
 ;; `shellcop-reset-with-new-command' will,
 ;;   - kill current running process
