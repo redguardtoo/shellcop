@@ -19,15 +19,12 @@ Press =Enter= key. The file path and line number information is extracted and yo
 
 [[file:demo.png]]
 
-Run =shellcop-erase-buffer= to erase following buffers with below names,
-- =*Messages= (default)
-- =*shell*= (if parameter 1 is passed)
-- =*Javascript REPL*= (if parameter 2 is passed)
-- =*eshell*= (if parameter 3 is passed)
+Run =shellcop-erase-buffer= to erase current buffer in =shell-mode= and =message-buffer-mode=. Or else it erases content in message buffer.
 
 Run =shellcop-reset-with-new-command= to,
 - kill current running process
 - erase the content in shell buffer
 - If =shellcop-sub-window-has-error-function= return nil in all sub-windows, run =shellcop-insert-shell-command-function=
+
 * Contact me
 Report bug at [[https://github.com/redguardtoo/shellcop]].
