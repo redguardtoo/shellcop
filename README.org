@@ -1,9 +1,8 @@
 * shellcop
-[[https://travis-ci.org/redguardtoo/shellcop][https://travis-ci.org/redguardtoo/shellcop.svg?branch=master]]
 [[http://melpa.org/#/shellcop][file:http://melpa.org/packages/shellcop-badge.svg]]
 [[http://stable.melpa.org/#/shellcop][file:http://stable.melpa.org/packages/shellcop-badge.svg]]
 
-Analyze errors reported in Emacs builtin shell.
+Analyze info&error in shell-mode.
 
 * Install
 shellcop is already uploaded to [[http://melpa.org]]. The best way to install is Emacs package manager.
@@ -13,18 +12,25 @@ Insert below code into =~/.emacs=,
 (add-hook 'shell-mode-hook 'shellcop-start)
 #+end_src
 
-Run any command line program in shell. Move the focus inside the report of the program.
+Start =shell-mode= by =M-x shell=.
 
-Press =Enter= key. The file path and line number information is extracted and you can open corresponding file.
+Run any command line program in =shell-mode=. Move the focus inside the output of the program.
+
+Press =Enter= key. The file path and line number information is extracted and you can open corresponding file. The cursor is not required to be on the same line containing file path.
 
 [[file:demo.png]]
-
-Run =shellcop-erase-buffer= to erase current buffer in =shell-mode= and =message-buffer-mode=. Or else it erases content in message buffer.
 
 Run =shellcop-reset-with-new-command= to,
 - kill current running process
 - erase the content in shell buffer
 - If =shellcop-sub-window-has-error-function= return nil in all sub-windows, run =shellcop-insert-shell-command-function=
 
+Run =shellcop-erase-buffer= to erase current buffer in =shell-mode= and =message-buffer-mode=. Or else it erases content in message buffer.
+
+Run =M-x shellcop-search-in-shell-buffer-of-other-window=. Use current word or selected text to search in *shell* buffer of the other window.
 * Contact me
 Report bug at [[https://github.com/redguardtoo/shellcop]].
+* License
+This program is free software: you can redistribute it and/or modify it under the terms of the [[file:LICENSE][GNU General Public License]] as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the [[file:LICENSE][GNU General Public License]] for more details.
