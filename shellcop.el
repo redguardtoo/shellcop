@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2020-2021 Chen Bin
 ;;
-;; Version: 0.0.4
+;; Version: 0.0.5
 ;; Keywords: unix tools
 ;; Author: Chen Bin <chenbin DOT sh AT gmail DOT com>
 ;; URL: https://github.com/redguardtoo/shellcop
@@ -53,6 +53,7 @@
 ;;;
 
 (require 'cl-lib)
+(require 'comint)
 
 (defgroup shellcop nil
   "Analyze errors reported in Emacs builtin shell."
@@ -196,21 +197,18 @@ Extract file paths when user presses enter key shell."
   (interactive)
   (advice-add 'comint-send-input :around #'shellcop-comint-send-input-hack))
 
-;;;###autoload
 (defun shellcop-all-windows ()
   "Return all windows."
   (cl-mapcan (lambda (f)
                (window-list f 0 (frame-first-window f)))
              (visible-frame-list)))
 
-;;;###autoload
 (defun shellcop-current-line ()
   "Get current line text."
   (let* ((inhibit-field-text-motion t))
     (buffer-substring-no-properties (line-beginning-position)
                                     (line-end-position))))
 
-;;;###autoload
 (defun shellcop-prompt-line-p (&optional position)
   "If line at POSITION has prompt at the beginning."
   (let* (rlt)
@@ -298,7 +296,7 @@ Keep latest N cli program output if it's not nil."
       (cond
        (err-wins
         (message "Code syntax error in windows %s"
-                 (mapconcat 'identity err-wins " ")))
+                 (mapconcat #'identity err-wins " ")))
        (shellcop-insert-shell-command-function
         (funcall shellcop-insert-shell-command-function)))))
 
@@ -319,7 +317,6 @@ Or else erase current buffer."
    (t
     (shellcop-erase-one-visible-buffer "*Messages*"))))
 
-;;;###autoload
 (defun shellcop-visible-window-list ()
   "Visible window list."
   (cl-mapcan (lambda (frame)
