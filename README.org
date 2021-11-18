@@ -16,7 +16,7 @@ Start =shell-mode= by =M-x shell=.
 
 Run any command line program in =shell-mode=. Move the focus inside the output of the program.
 
-Press =Enter= key. The file path and line number information is extracted and you can open corresponding file. The cursor is not required to be on the same line containing file path.
+Press =Enter= key or =M-x shellcop-goto-location-near-point=. The file path and line number information is extracted and you can open corresponding file. The cursor is not required to be on the same line containing file path.
 
 [[file:demo.png]]
 
