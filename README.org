@@ -28,7 +28,12 @@ Run =shellcop-reset-with-new-command= to,
 
 Run =shellcop-erase-buffer= to erase current buffer in =shell-mode= and =message-buffer-mode=. Or else it erases content in message buffer.
 
-Run =M-x shellcop-search-in-shell-buffer-of-other-window=. Use current word or selected text to search in *shell* buffer of the other window.
+Run =shellcop-jump-around= to jump to directories recorded by [[https://github.com/rupa/z]],
+- If shell is visible, \"cd dest-dir\" is inserted into shell
+- Or else, the directory is opened in `dired-mode'
+
+Run =shellcop-search-in-shell-buffer-of-other-window=. Use current word or selected text to search in *shell* buffer of the other window.
+
 * Contact me
 Report bug at [[https://github.com/redguardtoo/shellcop]].
 * License
