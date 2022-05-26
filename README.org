@@ -1,4 +1,5 @@
 * shellcop
+[[https://github.com/redguardtoo/shellcop/actions/workflows/test.yml][https://github.com/redguardtoo/shellcop/actions/workflows/test.yml/badge.svg]]
 [[https://elpa.nongnu.org/nongnu/shellcop.html][file:https://elpa.nongnu.org/nongnu/shellcop.svg]]
 [[http://melpa.org/#/shellcop][file:http://melpa.org/packages/shellcop-badge.svg]]
 [[http://stable.melpa.org/#/shellcop][file:http://stable.melpa.org/packages/shellcop-badge.svg]]

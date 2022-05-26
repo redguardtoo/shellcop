@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2020-2021 Chen Bin
 ;;
-;; Version: 0.0.9
+;; Version: 0.1.0
 ;; Keywords: unix tools
 ;; Author: Chen Bin <chenbin.sh@gmail.com>
 ;; URL: https://github.com/redguardtoo/shellcop
@@ -59,6 +59,7 @@
 
 (require 'cl-lib)
 (require 'comint)
+(require 'subr-x)
 
 (defgroup shellcop nil
   "Analyze errors reported in Emacs builtin shell."
@@ -97,7 +98,7 @@ If there is error, it returns t."
   :group 'shellcop)
 
 (defcustom shellcop-string-search-function 'search-backward
-  "The string search function used in `shellcop-search-in-shell-buffer-of-other-window'."
+  "String search function for `shellcop-search-in-shell-buffer-of-other-window'."
   :type 'function
   :group 'shellcop)
 
@@ -154,7 +155,8 @@ If there is error, it returns t."
 
 (defun shellcop-extract-locations-at-point (&optional above)
   "Extract locations in one direction into RLT.
-If ABOVE is t, extract locations above current point; or else below current point."
+If ABOVE is t, extract locations above current point,
+If ABOVE is nil, extract locations below current point."
 (let* (rlt
        (line (if above -1 1))
        location)
@@ -212,8 +214,7 @@ If ABOVE is t, extract locations above current point; or else below current poin
 (defun shellcop-comint-send-input-hack (orig-func &rest args)
   "Advice `comint-send-input' with ORIG-FUNC and ARGS.
 Extract file paths when user presses enter key shell."
-  (let* ((artifical (nth 1 args))
-         locations)
+  (let* ((artifical (nth 1 args)))
     (when shellcop-debug
       (message "shellcop-comint-send-input-hack (%s)" artifical))
     (cond
@@ -421,8 +422,7 @@ Or else, the directory is opened in `dired-mode'."
     ;; Emacs use gzip to extract plain text file "~/.z"
     (let* ((dirs (shellcop-directories-from-z))
            dest
-           pattern
-           shell-window)
+           pattern)
 
       (when (> (length dirs) 0)
         (setq pattern
@@ -444,7 +444,7 @@ Or else, the directory is opened in `dired-mode'."
             (insert "cd " dest))
 
            ;; jump to the shell
-           ((setq shell-window (shellcop-get-window shellcop-shell-buffer-name))
+           ((shellcop-get-window shellcop-shell-buffer-name)
             (shellcop-focus-window shellcop-shell-buffer-name
                                    (lambda (keyword)
                                      (ignore keyword)
